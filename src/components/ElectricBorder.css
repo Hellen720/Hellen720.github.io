@@ -1,0 +1,68 @@
+/* ================================================
+   ELECTRIC BORDER — Canvas animation wrapper
+   Canvas overflows 60px on each side (borderOffset)
+================================================ */
+
+.electric-border {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+}
+
+/* Canvas sits 60px outside the container on every side */
+.eb-canvas-container {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+
+.eb-canvas {
+  display: block;
+  overflow: visible;
+}
+
+/* Static glow layers — complement the animated line */
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.eb-glow-1 {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 10px 2px var(--electric-border-color, #5227FF);
+  opacity: 0.18;
+}
+
+.eb-glow-2 {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  box-shadow: 0 0 24px 6px var(--electric-border-color, #5227FF);
+  opacity: 0.08;
+}
+
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 255, 255, 0.04),
+    transparent 70%
+  );
+}
+
+/* Content renders above all decoration layers */
+.eb-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}

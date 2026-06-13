@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import ElectricBorder from '../../components/electric.jsx';
 
 function useFade() {
   useEffect(() => {
@@ -101,17 +102,26 @@ const Contact = () => {
         </div>
 
         {/* CTA banner */}
-        <div className="card fade-up" style={{ padding: '2.5rem', textAlign: 'center' }}>
-          <div className="font-display" style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--fg)', marginBottom: '.5rem' }}>
-            准备好一起构建下一个<span className="grad"> AI 产品</span>了吗？
+        <ElectricBorder
+          color="#38B2AC"
+          speed={0.7}
+          chaos={0.08}
+          borderRadius={32}
+          className="fade-up"
+          style={{ width: '100%' }}
+        >
+          <div className="card" style={{ padding: '2.5rem', textAlign: 'center', width: '100%' }}>
+            <div className="font-display" style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--fg)', marginBottom: '.5rem' }}>
+              准备好一起构建下一个<span className="grad"> AI 产品</span>了吗？
+            </div>
+            <p style={{ color: 'var(--muted)', fontSize: '.9rem', marginBottom: '1.75rem' }}>
+              欢迎发邮件、微信，或者直接找我聊聊你的想法
+            </p>
+            <a href="mailto:541571181@qq.com" className="btn btn-primary cursor-target">
+              发邮件给我
+            </a>
           </div>
-          <p style={{ color: 'var(--muted)', fontSize: '.9rem', marginBottom: '1.75rem' }}>
-            欢迎发邮件、微信，或者直接找我聊聊你的想法
-          </p>
-          <a href="mailto:541571181@qq.com" className="btn btn-primary cursor-target">
-            发邮件给我
-          </a>
-        </div>
+        </ElectricBorder>
 
       </div>
     </section>

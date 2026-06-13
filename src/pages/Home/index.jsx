@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import ElectricBorder from '../../components/electric.jsx';
 
 const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
@@ -182,7 +183,14 @@ const Home = () => {
 
         {/* ── Right: profile card ── */}
         <div className="fade-up d3" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div className="card cursor-target" style={{ padding: '2.25rem', textAlign: 'center', width: '100%', maxWidth: 300 }}>
+          <ElectricBorder
+            color="#8B84FF"
+            speed={0.8}
+            chaos={0.1}
+            borderRadius={32}
+            style={{ width: '100%', maxWidth: 300 }}
+          >
+          <div className="card cursor-target" style={{ padding: '2.25rem', textAlign: 'center', width: '100%' }}>
 
             {/* Avatar */}
             <div style={{ width: 92, height: 92, borderRadius: '50%', margin: '0 auto 1.25rem', boxShadow: 'var(--e)', overflow: 'hidden', flexShrink: 0 }}>
@@ -238,6 +246,7 @@ const Home = () => {
               </a>
             </div>
           </div>
+          </ElectricBorder>
         </div>
       </div>
 
