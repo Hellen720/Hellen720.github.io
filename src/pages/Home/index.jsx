@@ -183,8 +183,8 @@ const Home = () => {
 
         {/* ── Right: profile card ── */}
         <div className="fade-up d3" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: 300 }}>
-            <div className="card cursor-target" style={{ padding: '2.25rem', textAlign: 'center', width: '100%' }}>
+          <div style={{ position: 'relative' }}>
+            <div className="card cursor-target" style={{ padding: '2.25rem', textAlign: 'center', width: 300 }}>
 
               {/* Avatar */}
               <div style={{ width: 92, height: 92, borderRadius: '50%', margin: '0 auto 1.25rem', boxShadow: 'var(--e)', overflow: 'hidden', flexShrink: 0 }}>

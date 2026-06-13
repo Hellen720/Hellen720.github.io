@@ -10,12 +10,11 @@
   overflow: visible;
 }
 
-/* Canvas sits outside the container; shift 3px inward so the drawn line
-   centres on the card border (noise offsets ±~3px around drawing origin) */
+/* Canvas sits 60px outside the container on every side */
 .eb-canvas-container {
   position: absolute;
-  top: -57px;
-  left: -57px;
+  top: -60px;
+  left: -60px;
   pointer-events: none;
   z-index: 10;
   overflow: visible;
