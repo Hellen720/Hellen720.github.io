@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
 /* ── Typewriter hook ───────────────────────────────── */
 const PHRASES = ['AI 产品经理', 'LLM 产品专家', 'Agent 架构师', '智能产品设计师'];
@@ -106,11 +107,11 @@ function useFadeObserver() {
 /* ── Component ─────────────────────────────────────── */
 const Home = () => {
   const typed = useTypewriter();
-  const navigate = useNavigate();
   useFadeObserver();
 
   return (
     <section
+      id="home"
       className="section"
       style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}
     >
@@ -170,10 +171,10 @@ const Home = () => {
           </p>
 
           <div className="fade-up d4" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <button className="btn btn-primary cursor-target" onClick={() => navigate('/contact')}>
+            <button className="btn btn-primary cursor-target" onClick={() => scrollTo('contact')}>
               联系我
             </button>
-            <button className="btn btn-secondary cursor-target" onClick={() => navigate('/projects')}>
+            <button className="btn btn-secondary cursor-target" onClick={() => scrollTo('projects')}>
               查看作品 &nbsp;→
             </button>
           </div>

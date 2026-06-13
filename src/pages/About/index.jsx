@@ -44,7 +44,7 @@ const TIMELINE = [
 const About = () => {
   useFade();
   return (
-    <section className="section">
+    <section id="about" className="section">
       <div className="section-inner">
 
         {/* Header */}

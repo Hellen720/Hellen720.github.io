@@ -1,45 +1,71 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+
+const SECTIONS = ['home', 'about', 'projects', 'contact'];
+const LABELS   = { home: '首页', about: '关于我', projects: '项目', contact: '联系我' };
+
+const scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+};
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const [active, setActive]     = useState('home');
 
-  // Close menu on route change
+  /* 根据滚动位置更新激活的导航项 */
   useEffect(() => {
-    setMenuOpen(false);
-  }, [navigate]);
+    const onScroll = () => {
+      const mid = window.scrollY + window.innerHeight / 3;
+      for (const id of [...SECTIONS].reverse()) {
+        const el = document.getElementById(id);
+        if (el && mid >= el.offsetTop) { setActive(id); break; }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const toggleMenu = () => setMenuOpen(v => !v);
-  const closeMenu = () => setMenuOpen(false);
+  const handleNav = (id) => { scrollTo(id); setMenuOpen(false); };
 
   return (
     <nav className="navbar">
       <div className="navbar-inner">
 
         {/* Logo */}
-        <NavLink to="/" className="nav-logo cursor-target" aria-label="首页">
-          H
-        </NavLink>
+        <button
+          className="nav-logo cursor-target"
+          aria-label="回到顶部"
+          onClick={() => handleNav('home')}
+          style={{ background: 'var(--accent)', color: '#fff', border: 'none', cursor: 'pointer' }}
+        >H</button>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav */}
         <div className="nav-links desktop-only">
-          <NavLink to="/"         className={({ isActive }) => 'nav-link cursor-target' + (isActive ? ' active' : '')}>首页</NavLink>
-          <NavLink to="/about"    className={({ isActive }) => 'nav-link cursor-target' + (isActive ? ' active' : '')}>关于我</NavLink>
-          <NavLink to="/projects" className={({ isActive }) => 'nav-link cursor-target' + (isActive ? ' active' : '')}>项目</NavLink>
-          <NavLink to="/contact"  className={({ isActive }) => 'nav-link cursor-target' + (isActive ? ' active' : '')}>联系我</NavLink>
+          {SECTIONS.map(id => (
+            <button
+              key={id}
+              className={`nav-link cursor-target${active === id ? ' active' : ''}`}
+              onClick={() => handleNav(id)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+            >
+              {LABELS[id]}
+            </button>
+          ))}
         </div>
 
-        {/* CTA button (desktop) */}
-        <NavLink to="/contact" className="btn btn-primary btn-sm desktop-only cursor-target">
+        {/* CTA (desktop) */}
+        <button
+          className="btn btn-primary btn-sm desktop-only cursor-target"
+          onClick={() => handleNav('contact')}
+        >
           联系我
-        </NavLink>
+        </button>
 
         {/* Hamburger (mobile) */}
         <button
           className="ham-btn mobile-only cursor-target"
           aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
-          onClick={toggleMenu}
+          onClick={() => setMenuOpen(v => !v)}
           style={{ display: 'flex' }}
         >
           <span className="ham-line" style={menuOpen ? { transform: 'translateY(7px) rotate(45deg)' } : {}} />
@@ -48,16 +74,26 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile slide-down menu */}
+      {/* Mobile slide-down */}
       <div className={`mob-menu${menuOpen ? ' open' : ''}`}>
         <div style={{ paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '.25rem' }}>
-          <NavLink to="/"         className="mob-nav-link cursor-target" onClick={closeMenu}>首页</NavLink>
-          <NavLink to="/about"    className="mob-nav-link cursor-target" onClick={closeMenu}>关于我</NavLink>
-          <NavLink to="/projects" className="mob-nav-link cursor-target" onClick={closeMenu}>项目</NavLink>
-          <NavLink to="/contact"  className="mob-nav-link cursor-target" onClick={closeMenu}>联系我</NavLink>
-          <NavLink to="/contact"  className="btn btn-primary cursor-target" style={{ marginTop: '.75rem', width: '100%' }} onClick={closeMenu}>
+          {SECTIONS.map(id => (
+            <button
+              key={id}
+              className="mob-nav-link cursor-target"
+              onClick={() => handleNav(id)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+            >
+              {LABELS[id]}
+            </button>
+          ))}
+          <button
+            className="btn btn-primary cursor-target"
+            style={{ marginTop: '.75rem', width: '100%' }}
+            onClick={() => handleNav('contact')}
+          >
             联系我
-          </NavLink>
+          </button>
         </div>
       </div>
     </nav>

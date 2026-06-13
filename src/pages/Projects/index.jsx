@@ -60,7 +60,7 @@ const PROJECTS = [
 const Projects = () => {
   useFade();
   return (
-    <section className="section">
+    <section id="projects" className="section">
       <div className="section-inner">
 
         <div className="section-label fade-up">

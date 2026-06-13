@@ -55,7 +55,7 @@ const CONTACTS = [
 const Contact = () => {
   useFade();
   return (
-    <section className="section">
+    <section id="contact" className="section">
       <div className="section-inner">
 
         <div className="section-label fade-up">
