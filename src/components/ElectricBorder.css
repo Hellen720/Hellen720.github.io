@@ -10,11 +10,12 @@
   overflow: visible;
 }
 
-/* Canvas sits 60px outside the container on every side */
+/* Canvas sits outside the container; shift 3px inward so the drawn line
+   centres on the card border (noise offsets ±~3px around drawing origin) */
 .eb-canvas-container {
   position: absolute;
-  top: -60px;
-  left: -60px;
+  top: -57px;
+  left: -57px;
   pointer-events: none;
   z-index: 10;
   overflow: visible;
@@ -25,7 +26,7 @@
   overflow: visible;
 }
 
-/* Static glow layers — complement the animated line */
+/* Static glow layers — inset glow stays strictly inside the card border */
 .eb-layers {
   position: absolute;
   inset: 0;
@@ -36,18 +37,18 @@
 
 .eb-glow-1 {
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 10px 2px var(--electric-border-color, #5227FF);
+  box-shadow: inset 0 0 10px 2px var(--electric-border-color, #5227FF);
   opacity: 0.18;
 }
 
 .eb-glow-2 {
   position: absolute;
-  inset: -4px;
+  inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 24px 6px var(--electric-border-color, #5227FF);
-  opacity: 0.08;
+  box-shadow: inset 0 0 28px 6px var(--electric-border-color, #5227FF);
+  opacity: 0.07;
 }
 
 .eb-background-glow {
@@ -55,8 +56,8 @@
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(255, 255, 255, 0.04),
+    ellipse at 50% 50%,
+    rgba(255, 255, 255, 0.02),
     transparent 70%
   );
 }
