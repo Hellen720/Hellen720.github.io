@@ -5,8 +5,9 @@
 
 .electric-border {
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: stretch;
+  overflow: visible;
 }
 
 /* Canvas sits 60px outside the container on every side */

@@ -102,15 +102,8 @@ const Contact = () => {
         </div>
 
         {/* CTA banner */}
-        <ElectricBorder
-          color="#38B2AC"
-          speed={0.85}
-          chaos={0.04}
-          borderRadius={32}
-          className="fade-up"
-          style={{ width: '100%' }}
-        >
-          <div className="card" style={{ padding: '2.5rem', textAlign: 'center', width: '100%' }}>
+        <div className="fade-up" style={{ position: 'relative' }}>
+          <div className="card" style={{ padding: '2.5rem', textAlign: 'center' }}>
             <div className="font-display" style={{ fontWeight: 800, fontSize: '1.5rem', color: 'var(--fg)', marginBottom: '.5rem' }}>
               准备好一起构建下一个<span className="grad"> AI 产品</span>了吗？
             </div>
@@ -121,7 +114,17 @@ const Contact = () => {
               发邮件给我
             </a>
           </div>
-        </ElectricBorder>
+          {/* ElectricBorder as overlay — traces the card border precisely */}
+          <ElectricBorder
+            color="#38B2AC"
+            speed={1.1}
+            chaos={0.04}
+            borderRadius={32}
+            style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+          >
+            <div style={{ width: '100%', height: '100%' }} />
+          </ElectricBorder>
+        </div>
 
       </div>
     </section>
