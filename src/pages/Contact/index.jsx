@@ -104,8 +104,8 @@ const Contact = () => {
         {/* CTA banner */}
         <ElectricBorder
           color="#38B2AC"
-          speed={0.7}
-          chaos={0.08}
+          speed={0.85}
+          chaos={0.04}
           borderRadius={32}
           className="fade-up"
           style={{ width: '100%' }}

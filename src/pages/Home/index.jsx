@@ -185,8 +185,8 @@ const Home = () => {
         <div className="fade-up d3" style={{ display: 'flex', justifyContent: 'center' }}>
           <ElectricBorder
             color="#8B84FF"
-            speed={0.8}
-            chaos={0.1}
+            speed={0.9}
+            chaos={0.04}
             borderRadius={32}
             style={{ width: '100%', maxWidth: 300 }}
           >
